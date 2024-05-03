@@ -1,0 +1,85 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>{{ name }}</mat-card-title>
+
+    <mat-card-subtitle>{{ title }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>{{ summary }}</p>
+    <h2>Skills</h2>
+    <div class="skills-container">
+      @for(skill of skills; track skill) {
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ skill.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ skill.description }}</p>
+        </mat-card-content>
+      </mat-card>
+      }
+    </div>
+
+    <mat-divider></mat-divider>
+    <h2>Experiences</h2>
+    @for(experience of experiences; track experience) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ experience.title }}</mat-panel-title>
+        <mat-panel-description>{{ experience.company }}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list>
+        @for(responsibility of experience.responsibilities; track responsibility) {
+        <mat-list-item>{{ responsibility }}</mat-list-item>
+        }
+      </mat-list>
+    </mat-expansion-panel>
+    }
+    <mat-divider></mat-divider>
+    <h2>Education</h2>
+    @for (education of educations; track education) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ education.degree }}</mat-panel-title>
+          <mat-panel-description>{{ education.university }}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+          @for (course of education.courses; track course) {
+          <mat-list-item>{{ course }}</mat-list-item>
+          }
+        </mat-list>
+      </mat-expansion-panel>
+    }
+
+    <mat-divider></mat-divider>
+
+    <h2>Awards and Honors</h2>
+    @for (project of projects; track project) {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ project.title }}</mat-card-title>
+        <mat-card-subtitle>{{ project.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ project.description }}</p>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-chip-grid>
+          @for (technology of project.technologies; track technology) {
+          <mat-chip>{{ technology }}</mat-chip>
+          }
+        </mat-chip-grid>
+      </mat-card-footer>
+      <mat-card-actions>
+        <button mat-button>View Project</button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button (click)="openChatPanel()">Contact Me</button>
+  </mat-card-actions>
+</mat-card>
